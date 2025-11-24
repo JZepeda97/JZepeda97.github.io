@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jorge Zepeda | IT Labs & Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of IT, system administration, networking, and cybersecurity labs by Jorge Zepeda." />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.5;
+    }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      padding: 2.5rem 1.5rem 1rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+      border-bottom: 1px solid #1f2937;
+    }
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .title {
+      font-size: 1rem;
+      color: #9ca3af;
+      margin-top: .25rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: #020617;
+      border: 1px solid #1f2937;
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card h2 {
+      margin: 0 0 .75rem;
+      font-size: 1.3rem;
+    }
+    .tagline {
+      color: #9ca3af;
+      margin-top: .5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: .75rem;
+    }
+    .project-card {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid #1f2937;
+      padding: 1rem 1.1rem;
+    }
+    .project-card h3 {
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+    }
+    .pill {
+      display: inline-block;
+      font-size: .75rem;
+      padding: .15rem .45rem;
+      border-radius: 999px;
+      background: #0f766e;
+      color: #e5e7eb;
+      margin-right: .25rem;
+      margin-bottom: .25rem;
+    }
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: #6b7280;
+      padding: 1.5rem 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="name">Jorge Zepeda</div>
+    <div class="title">IT Support Specialist · System Administration & Networking Labs</div>
+    <p class="tagline">Building hands-on labs in Windows Server, Active Directory, networking, and security — and documenting everything.</p>
+  </header>
+
+  <main class="container">
+    <!-- About -->
+    <section class="card">
+      <h2>About</h2>
+      <p>
+        I’m an IT Support Specialist based in San Diego, focusing on system administration, networking, and cybersecurity.
+        I use home labs and real-world style projects to practice skills like Windows Server, Active Directory, Group Policy,
+        virtualization, and security tooling. This page collects the labs I’ve built and documented on GitHub.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section class="card">
+      <h2>Labs & Projects</h2>
+      <p class="tagline">Each project links to a GitHub repo with steps, screenshots, and notes.</p>
+
+      <div class="projects-grid">
+        <!-- AD DS Lab -->
+        <article class="project-card">
+          <h3><a href="https://github.com/JZepeda97/active-directory-domain-services-lab" target="_blank" rel="noopener noreferrer">
+            Active Directory Domain Services (AD DS) Lab
+          </a></h3>
+          <p>
+            Installed and configured AD DS on Windows Server 2019, created the <code>jzdomain.local</code> domain,
+            configured DNS, and promoted the server to a Domain Controller. Includes step-by-step screenshots and verification.
+          </p>
+          <div>
+            <span class="pill">Windows Server</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">DNS</span>
+            <span class="pill">System Admin</span>
+          </div>
+        </article>
+
+        <!-- Placeholder examples for future labs -->
+        <article class="project-card">
+          <h3>Wazuh SIEM Home Lab (coming soon)</h3>
+          <p>
+            Planned lab where I deploy a Wazuh SIEM server on Linux, connect Windows endpoints, and create basic alert rules
+            to monitor security events.
+          </p>
+          <div>
+            <span class="pill">SIEM</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Security</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Golden Image & GPO Hardening (coming soon)</h3>
+          <p>
+            Imaging a standardized Windows build, applying security-focused Group Policies, and preparing a reusable golden
+            image for deployments.
+          </p>
+          <div>
+            <span class="pill">Imaging</span>
+            <span class="pill">Group Policy</span>
+            <span class="pill">Hardening</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="card">
+      <h2>Contact</h2>
+      <p>
+        💼 LinkedIn:
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+          Add your LinkedIn profile URL here
+        </a>
+        <br />
+        📧 Email: add-your-email-here@example.com
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Jorge Zepeda · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
