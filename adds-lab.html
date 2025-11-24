@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AD DS Lab | Jorge Zepeda</title>
+  <title>Active Directory Domain Services (AD DS) Lab | Jorge Zepeda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -21,8 +21,23 @@
       font-size: 2rem;
       margin-bottom: .5rem;
     }
-    h2 { margin-top: 2rem; }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: .25rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
     a { color: #38bdf8; }
+    img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #1f2937;
+      display: block;
+    }
+    ul { padding-left: 1.25rem; }
   </style>
 </head>
 <body>
@@ -31,27 +46,105 @@
     <h1>Active Directory Domain Services (AD DS) Lab</h1>
     <p>
       This project demonstrates how I installed and configured Active Directory Domain Services (AD DS)
-      on a Windows Server 2019 VM. The goal was to create the <strong>jzdomain.local</strong> domain,
-      configure DNS, and promote the server to a Domain Controller.
+      on a Windows Server 2019 virtual machine. The goal of this lab is to create the
+      <strong>jzdomain.local</strong> domain, configure DNS, and promote the server to a Domain Controller.
     </p>
 
-    <h2>Overview</h2>
+    <h2>Lab Overview</h2>
     <ul>
-      <li>Windows Server 2019</li>
-      <li>Active Directory Domain Services (AD DS)</li>
-      <li>DNS integration</li>
-      <li>Domain: jzdomain.local</li>
+      <li>Server OS: Windows Server 2019</li>
+      <li>Role Installed: Active Directory Domain Services (AD DS)</li>
+      <li>Domain Created: jzdomain.local</li>
+      <li>Network Type: NAT + Host-Only Adapter</li>
     </ul>
 
-    <h2>Installation Steps</h2>
-    <p>(Images will go here once we add them)</p>
+    <h2>AD DS Installation Steps</h2>
+
+    <h3>Step 1 – Add Roles and Features</h3>
+    <p>
+      In Server Manager, I started the wizard by selecting <strong>Add Roles and Features</strong>.
+      This begins the process of adding the AD DS role to the server.
+    </p>
+    <img src="images/1.png" alt="Step 1 - Add Roles and Features" />
+
+    <h3>Step 2 – Installation Type</h3>
+    <p>
+      I chose <strong>Role-based or feature-based installation</strong>. This tells Windows that I'm
+      adding a server role directly to this machine (not a remote or multi-server deployment).
+    </p>
+    <img src="images/2.png" alt="Step 2 - Role-based or feature-based installation" />
+
+    <h3>Step 3 – Server Selection</h3>
+    <p>
+      I confirmed that the local server was selected as the target for the new role.
+    </p>
+    <img src="images/3.png" alt="Step 3 - Server selection" />
+
+    <h3>Step 4 – Server Roles</h3>
+    <p>
+      I enabled <strong>Active Directory Domain Services</strong>. This installs the components needed
+      for user accounts, authentication, Group Policy, and domain management.
+    </p>
+    <img src="images/4.png" alt="Step 4 - Select AD DS role" />
+
+    <h3>Step 5 – Confirmation</h3>
+    <p>
+      I reviewed the selections and started the installation of the AD DS binaries on the server.
+      Once this completed, the server was ready to be promoted to a Domain Controller.
+    </p>
+    <img src="images/5.png" alt="Step 5 - Confirm installation" />
+
+    <h3>Step 6 – Promote This Server to a Domain Controller</h3>
+    <p>
+      After the role installed, I clicked <strong>Promote this server to a domain controller</strong>.
+      This step turns the server into the main authority for authentication, domain logons,
+      and Group Policy in the environment.
+    </p>
+    <img src="images/6.png" alt="Step 6 - Promote to Domain Controller" />
+
+    <h3>Step 7 – Deployment Configuration</h3>
+    <p>
+      I chose <strong>Add a new forest</strong> and created a new domain named
+      <strong>jzdomain.local</strong>. This sets up the base Active Directory structure for the lab.
+    </p>
+    <img src="images/7.png" alt="Step 7 - Add a new forest jzdomain.local" />
+
+    <h3>Step 8 – Domain Controller Options</h3>
+    <p>
+      I configured the Domain Controller options, including installing DNS and setting the
+      Directory Services Restore Mode (DSRM) password. DNS is required for AD to function correctly.
+    </p>
+    <img src="images/8.png" alt="Step 8 - Domain Controller options and DNS" />
+
+    <h3>Step 9 – NetBIOS Domain Name</h3>
+    <p>
+      I verified that the NetBIOS name matched the domain prefix. This helps older tools and services
+      that rely on a short domain name continue to work.
+    </p>
+    <img src="images/9.png" alt="Step 9 - NetBIOS domain name" />
+
+    <h3>Step 10 – Review Options</h3>
+    <p>
+      I reviewed all configuration choices before starting the promotion. Once confirmed, the wizard
+      promoted the server to a Domain Controller and rebooted it.
+    </p>
+    <img src="images/10.png" alt="Step 10 - Review options before promotion" />
+
+    <h3>Domain Creation Verification</h3>
+    <p>
+      After the server rebooted, I opened <strong>Active Directory Users and Computers (ADUC)</strong>
+      to confirm that the <strong>jzdomain.local</strong> domain was created successfully and that the
+      default containers (Builtin, Computers, Domain Controllers, Users, etc.) were present.
+    </p>
+    <img src="images/11.png" alt="Domain verification in Active Directory Users and Computers" />
 
     <h2>Skills Demonstrated</h2>
     <ul>
-      <li>Server role installation</li>
+      <li>Windows Server role installation</li>
       <li>Domain Controller promotion</li>
-      <li>DNS configuration</li>
-      <li>Group Policy groundwork</li>
+      <li>DNS configuration for Active Directory</li>
+      <li>Understanding of AD DS deployment steps</li>
+      <li>Basic documentation of a lab build</li>
     </ul>
 
     <p><a href="index.html">&larr; Back to Home</a></p>
