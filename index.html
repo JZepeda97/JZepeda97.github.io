@@ -94,4 +94,92 @@
     <div class="name">Jorge Zepeda</div>
     <div class="title">IT Support Specialist focused on system administration, networking, and cybersecurity labs.</div>
     <p class="tagline">
-      I build and document hands-on projects to strengthen real-world skills in Windows Server, Active Directory, and networked environ
+      I build and document hands-on projects to strengthen real-world skills in Windows Server, Active Directory, and networked environments.
+    </p>
+  </header>
+
+  <main class="container">
+    <!-- About -->
+    <section class="card">
+      <h2>About</h2>
+      <p>
+        I’m an IT Support Specialist based in San Diego, focusing on system administration, networking, and cybersecurity.
+        I use home labs and real-world style projects to practice skills like Windows Server, Active Directory, Group Policy,
+        virtualization, and security tools.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section class="card">
+      <h2>Labs & Projects</h2>
+      <p class="tagline">Each project links to a GitHub repo with steps, screenshots, and notes.</p>
+
+      <div class="projects-grid">
+        <!-- AD DS Lab -->
+        <article class="project-card">
+          <h3><a href="https://github.com/JZepeda97/active-directory-domain-services-lab" target="_blank" rel="noopener noreferrer">
+            Active Directory Domain Services (AD DS) Lab
+          </a></h3>
+          <p>
+            Installed and configured AD DS on Windows Server 2019, created the <code>jzdomain.local</code> domain,
+            configured DNS, and promoted the server to a Domain Controller. Includes step-by-step screenshots and verification.
+          </p>
+          <div>
+            <span class="pill">Windows Server</span>
+            <span class="pill">Active Directory</span>
+            <span class="pill">DNS</span>
+            <span class="pill">System Admin</span>
+          </div>
+        </article>
+
+        <!-- Placeholder examples for future labs -->
+        <article class="project-card">
+          <h3>Wazuh SIEM Home Lab (coming soon)</h3>
+          <p>
+            Planned lab where I deploy a Wazuh SIEM server on Linux, connect Windows endpoints, and create basic alert rules
+            to monitor security events.
+          </p>
+          <div>
+            <span class="pill">SIEM</span>
+            <span class="pill">Linux</span>
+            <span class="pill">Security</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Golden Image & GPO Hardening (coming soon)</h3>
+          <p>
+            Imaging a standardized Windows build, applying security-focused Group Policies, and preparing a reusable golden
+            image for deployments.
+          </p>
+          <div>
+            <span class="pill">Imaging</span>
+            <span class="pill">Group Policy</span>
+            <span class="pill">Hardening</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="card">
+      <h2>Certifications</h2>
+      <ul>
+        <li>CompTIA Security+ </li>
+        <li>CompTIA Network+</li>
+        <li>CompTIA A+</li>
+        <li>ITIL® 4 Foundation</li>
+        <li>ISC2 Certified in Cybersecurity (CC)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Jorge Zepeda · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
