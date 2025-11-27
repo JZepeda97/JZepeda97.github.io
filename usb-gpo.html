@@ -30,14 +30,20 @@
       margin-top: 1.5rem;
     }
     a { color: #38bdf8; }
-    ul { padding-left: 1.25rem; }
     img {
       max-width: 100%;
       border-radius: 0.5rem;
-      margin-top: 0.5rem;
+      margin: 0.5rem 0;
       border: 1px solid #1f2937;
       display: block;
     }
+    pre {
+      background:#1e293b;
+      padding:10px;
+      border-radius:5px;
+      overflow-x:auto;
+    }
+    ul { padding-left: 1.25rem; }
   </style>
 </head>
 
@@ -46,27 +52,29 @@
 
     <h1>USB Block Group Policy (GPO)</h1>
     <p>
-      This project shows how I created a Group Policy Object (GPO) to block USB storage devices on domain-joined systems. 
+      This project shows how I created a Group Policy Object (GPO) to block USB storage devices on domain-joined systems.
       USB storage is one of the most common ways malware enters a network and also poses a significant risk of data loss and theft.
     </p>
 
     <h2>Why This Matters</h2>
     <p>
-      USB devices are a major entry point for malware and a common method for unauthorized data transfer. 
-      Blocking USB storage helps protect sensitive data and reduces attack vectors in a Windows domain environment.
+      USB devices are a major entry point for malware and a common method for unauthorized data transfer.
+      Blocking USB storage helps protect sensitive data and reduces attack vectors inside a Windows domain environment.
     </p>
 
     <h2>GPO Configuration Steps</h2>
 
-    <h3>1. Why I Used the Computer Configuration Path</h3>
+    <h3>1. Open Group Policy Management (Computer Configuration Path)</h3>
     <p>
-      I used the <strong>Computer Configuration</strong> path because blocking USB storage must apply to the machine itself—regardless of which user logs in. 
-      This ensures consistent enforcement across all accounts and stops users from bypassing the restriction by switching profiles.
+      I used the <strong>Computer Configuration</strong> path because blocking USB storage must apply to the
+      <strong>machine itself</strong>—not just the user. This ensures consistent enforcement across all user accounts.
     </p>
+
+    <img src="images/USB1.png" alt="Opening Group Policy Management for USB GPO" />
 
     <h3>2. Enabling the USB Block Settings</h3>
     <p>
-      In Group Policy Management, I enabled the following settings to block USB storage device access:
+      I enabled the following Removable Storage Access restrictions:
     </p>
     <ul>
       <li><strong>Removable Disks: Deny read access</strong></li>
@@ -74,30 +82,30 @@
       <li><strong>Removable Disks: Deny execute access</strong></li>
     </ul>
     <p>
-      These settings prevent Windows from reading or writing to USB storage devices, effectively blocking flash drives, external hard drives, and other removable media.
+      These block USB flash drives, external storage, and other removable devices from being used.
     </p>
+
+    <img src="images/USB2.png" alt="USB GPO settings being configured" />
 
     <h3>3. Verifying the Policy Was Applied</h3>
     <p>
-      On the client system, I manually triggered a policy refresh using:
+      On the client system, I forced a policy update:
     </p>
 
-    <pre style="background:#1e293b; padding:10px; border-radius:5px; overflow-x:auto;">
-gpupdate /force
-    </pre>
+    <pre>gpupdate /force</pre>
 
     <p>
-      I then verified the GPO was active by testing USB access and checking applied GPOs using:
+      Then I verified the GPO was applied successfully using:
     </p>
 
-    <pre style="background:#1e293b; padding:10px; border-radius:5px; overflow-x:auto;">
-gpresult /r
-    </pre>
+    <pre>gpresult /r</pre>
+
+    <img src="images/USB3.png" alt="Verification of USB GPO using gpresult" />
 
     <h2>Summary</h2>
     <p>
-      This GPO helps protect the domain environment by blocking unauthorized USB storage usage. 
-      It reduces the chances of malware infections and prevents users from copying sensitive data to external devices.
+      This GPO protects the domain environment by blocking unauthorized USB storage usage. 
+      It reduces malware risk and prevents users from copying data onto external devices.
     </p>
 
     <p><a href="index.html">&larr; Back to Home</a></p>
