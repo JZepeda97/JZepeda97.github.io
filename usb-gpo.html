@@ -1,24 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>USB Block GPO</title>
+  <meta charset="UTF-8" />
+  <title>USB Block Group Policy (GPO) Lab | Jorge Zepeda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: .25rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    a { color: #38bdf8; }
+    ul { padding-left: 1.25rem; }
+    img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #1f2937;
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
 
-<h1>USB Block Group Policy (GPO)</h1>
+    <h1>USB Block Group Policy (GPO)</h1>
+    <p>
+      This project shows how I created a Group Policy Object (GPO) to block USB storage devices on domain-joined systems. 
+      USB storage is one of the most common ways malware enters a network and also poses a significant risk of data loss and theft.
+    </p>
 
-<p>Created this GPO to protect the organization from security risks related to USB devices. USB storage is one of the most common ways malware enters a network, and it also creates a significant risk of data loss and theft.</p>
+    <h2>Why This Matters</h2>
+    <p>
+      USB devices are a major entry point for malware and a common method for unauthorized data transfer. 
+      Blocking USB storage helps protect sensitive data and reduces attack vectors in a Windows domain environment.
+    </p>
 
-<h2>Steps</h2>
+    <h2>GPO Configuration Steps</h2>
 
-<h3>1. Why I Used the Computer Configuration Path</h3>
-<p>I used the Computer Configuration path because blocking USB storage must apply to the machine itself—regardless of which user logs in. This ensures consistent enforcement of the security rule across all accounts and prevents users from bypassing the restriction by switching profiles.</p>
+    <h3>1. Why I Used the Computer Configuration Path</h3>
+    <p>
+      I used the <strong>Computer Configuration</strong> path because blocking USB storage must apply to the machine itself—regardless of which user logs in. 
+      This ensures consistent enforcement across all accounts and stops users from bypassing the restriction by switching profiles.
+    </p>
 
-<h3>2. Enabling the USB Block Settings</h3>
-<p>Enabling these settings prevents Windows from reading or writing to USB storage devices, effectively blocking flash drives, external hard drives, and similar media.</p>
+    <h3>2. Enabling the USB Block Settings</h3>
+    <p>
+      In Group Policy Management, I enabled the following settings to block USB storage device access:
+    </p>
+    <ul>
+      <li><strong>Removable Disks: Deny read access</strong></li>
+      <li><strong>Removable Disks: Deny write access</strong></li>
+      <li><strong>Removable Disks: Deny execute access</strong></li>
+    </ul>
+    <p>
+      These settings prevent Windows from reading or writing to USB storage devices, effectively blocking flash drives, external hard drives, and other removable media.
+    </p>
 
-<h3>3. Verifying the Policy Was Applied</h3>
-<p>I manually triggered a Group Policy refresh on the client system using <code>gpupdate /force</code> and verified that the USB-block security policy was successfully applied.</p>
+    <h3>3. Verifying the Policy Was Applied</h3>
+    <p>
+      On the client system, I manually triggered a policy refresh using:
+    </p>
 
+    <pre style="background:#1e293b; padding:10px; border-radius:5px; overflow-x:auto;">
+gpupdate /force
+    </pre>
+
+    <p>
+      I then verified the GPO was active by testing USB access and checking applied GPOs using:
+    </p>
+
+    <pre style="background:#1e293b; padding:10px; border-radius:5px; overflow-x:auto;">
+gpresult /r
+    </pre>
+
+    <h2>Summary</h2>
+    <p>
+      This GPO helps protect the domain environment by blocking unauthorized USB storage usage. 
+      It reduces the chances of malware infections and prevents users from copying sensitive data to external devices.
+    </p>
+
+    <p><a href="index.html">&larr; Back to Home</a></p>
+
+  </div>
 </body>
 </html>
