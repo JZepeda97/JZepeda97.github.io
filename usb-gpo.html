@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USB Block GPO</title>
+</head>
+<body>
+
+<h1>USB Block Group Policy (GPO)</h1>
+
+<p>Created this GPO to protect the organization from security risks related to USB devices. USB storage is one of the most common ways malware enters a network, and it also creates a significant risk of data loss and theft.</p>
+
+<h2>Steps</h2>
+
+<h3>1. Why I Used the Computer Configuration Path</h3>
+<p>I used the Computer Configuration path because blocking USB storage must apply to the machine itself—regardless of which user logs in. This ensures consistent enforcement of the security rule across all accounts and prevents users from bypassing the restriction by switching profiles.</p>
+
+<h3>2. Enabling the USB Block Settings</h3>
+<p>Enabling these settings prevents Windows from reading or writing to USB storage devices, effectively blocking flash drives, external hard drives, and similar media.</p>
+
+<h3>3. Verifying the Policy Was Applied</h3>
+<p>I manually triggered a Group Policy refresh on the client system using <code>gpupdate /force</code> and verified that the USB-block security policy was successfully applied.</p>
+
+</body>
+</html>
