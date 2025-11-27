@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Remote Desktop Access GPO Lab | Jorge Zepeda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: .25rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    a { color: #38bdf8; }
+    ul { padding-left: 1.25rem; }
+    img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #1f2937;
+      display: block;
+    }
+    pre {
+      background:#1e293b;
+      padding:10px;
+      border-radius:5px;
+      overflow-x:auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Remote Desktop Access GPO</h1>
+    <p>
+      This project shows how I configured a Group Policy Object (GPO) to enable Remote Desktop Protocol (RDP)
+      only for authenticated domain users and devices. The goal is to allow remote management while keeping
+      access limited to trusted accounts inside the domain.
+    </p>
+
+    <h2>Objective</h2>
+    <p>
+      Enable RDP across domain-joined computers while restricting access so only authenticated users and
+      approved domain devices can connect.
+    </p>
+
+    <h2>GPO Configuration Steps</h2>
+
+    <h3>1. Open Group Policy Management Console</h3>
+    <p>
+      I started by opening the <strong>Group Policy Management Console (GPMC)</strong> on the Domain Controller.
+      This is where domain-wide GPOs are created and managed.
+    </p>
+    <img src="images/RDP1.png" alt="Opening Group Policy Management Console" />
+
+    <h3>2. Create a New GPO</h3>
+    <p>
+      I created a new GPO with a clear name describing its purpose (for example,
+      <strong>Remote Desktop Access GPO</strong>), and scoped it for the domain computers
+      that should allow Remote Desktop.
+    </p>
+    <p>
+      Creating a dedicated GPO keeps the RDP configuration centralized and easy to maintain.
+    </p>
+    <img src="images/RDP2.png" alt="Creating a new RDP GPO" />
+
+    <h3>3. Enable Remote Desktop Access</h3>
+    <p>
+      Within the GPO, I enabled Remote Desktop so that any computer receiving this policy will have
+      RDP turned on automatically. Configuring it through Group Policy ensures a consistent setup on
+      every domain-joined machine instead of relying on local manual changes.
+    </p>
+    <img src="images/RDP3.png" alt="Enabling Remote Desktop via Group Policy" />
+
+    <h3>4. Allow Only Authenticated Users to Access RDP</h3>
+    <p>
+      I restricted RDP access to authenticated domain users and, if needed, specific security groups.
+      This prevents unknown or non-domain accounts from connecting, limiting remote access to trusted
+      identities and devices joined to the domain.
+    </p>
+    <img src="images/RDP4.png" alt="Restricting RDP to authenticated domain users" />
+
+    <h3>5. Enable Network Level Authentication (NLA)</h3>
+    <p>
+      I enabled <strong>Network Level Authentication (NLA)</strong> to add an extra layer of security.
+      With NLA, users must authenticate <em>before</em> a full Remote Desktop session is created, which
+      reduces the attack surface and helps protect the system from unauthorized connection attempts.
+    </p>
+    <img src="images/RDP5.png" alt="Enabling Network Level Authentication for RDP" />
+
+    <h3>6. Link the GPO to All Domain Computers</h3>
+    <p>
+      I linked the GPO at the domain or OU level so it applies to the correct set of computers
+      (desktops, laptops, and servers) that should allow RDP access.
+    </p>
+    <img src="images/RDP6.png" alt="Linking the RDP GPO to domain computers" />
+
+    <h3>7. Force the GPO to Apply</h3>
+    <p>
+      On a domain-joined computer, I forced a Group Policy refresh so the new RDP settings would
+      apply immediately instead of waiting for the normal background update cycle:
+    </p>
+
+    <pre>gpupdate /force</pre>
+
+    <p>
+      After the update completed, I tested RDP access and confirmed that only authenticated domain
+      accounts could successfully connect.
+    </p>
+    <img src="images/RDP7.png" alt="Verifying GPO application and RDP access" />
+
+    <h2>Summary</h2>
+    <p>
+      This GPO standardizes Remote Desktop configuration across the domain and secures it by:
+    </p>
+    <ul>
+      <li>Enabling RDP only where needed</li>
+      <li>Restricting access to authenticated domain users and groups</li>
+      <li>Requiring Network Level Authentication for all remote sessions</li>
+      <li>Applying the same policy consistently to all scoped domain devices</li>
+    </ul>
+
+    <p><a href="index.html">&larr; Back to Home</a></p>
+
+  </div>
+</body>
+</html>
